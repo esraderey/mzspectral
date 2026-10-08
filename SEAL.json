@@ -1,0 +1,150 @@
+{
+  "seal_version": "1.0",
+  "work": {
+    "name": "mzspectral",
+    "long_name": "Optimizadores espectrales para matrices densas y factorizadas U·diag(S)·V",
+    "version": "0.1.0",
+    "package": "mzspectral"
+  },
+  "owner": {
+    "team": "MSC Star Team",
+    "authors": [
+      {
+        "name": "Esraderey",
+        "role": "co-titular",
+        "contact": "msc.framework@gmail.com"
+      },
+      {
+        "name": "Raul Cruz Acosta",
+        "role": "co-titular",
+        "contact": "msc.framework@gmail.com"
+      }
+    ],
+    "copyright": "(c) 2026 MSC Star Team.",
+    "license": "MIT (ver LICENSE)"
+  },
+  "origen": {
+    "experimento": "T22 = E9 de RFC-CALIDAD-1 (MZTrain)",
+    "carpeta": "D:/mztrain-evidencia-T22",
+    "sello_t22": "# v1 2026-10-07T17:45:30-0600",
+    "espectral_py_sha256": "e2f01afaf44fd91727875d396aa4684d4b7dc3606f458319859e45f47b9075f2"
+  },
+  "generated_at_utc": "2026-10-08T07:31:06Z",
+  "tool": {
+    "name": "scripts/sello.py",
+    "python": "3.13.2",
+    "platform": "win32"
+  },
+  "algorithms": [
+    "SHA-256",
+    "SHA-512",
+    "Merkle (SHA-256)"
+  ],
+  "file_count": 16,
+  "total_bytes": 69654,
+  "merkle_root_sha256": "5c23f4c1e5aaef6cc7bc794b2b029b9c8d15475a220572622775d7a1b5ae9998",
+  "files_canonical_sha256": "109b8f50d4f521feb5424cd1042c7d7f2635ae8072f42169ac9edd0f0f9fa29e",
+  "files_canonical_sha512": "be939f4f2a1acf207fbd77684d757db2905c1d03215a0d48f845aab2b9dc901bdc26a04f548cf79431df1a843f4d5ec8120abd6e077211c3c6b71d0853d5029b",
+  "files": [
+    {
+      "path": "AUTHORSHIP.md",
+      "sha256": "32ef58ef3a44389697b185148609f2ef7861d375ecfad6fdd67b9ce6409a8818",
+      "sha512": "64583f1be789f5c8264ac15ddc9398fa57c152afc4d2116c36f3843dfcf17198d271745e8835678a3d6f240f2fc23df65c8563309a9f359df1e3a6151191a654",
+      "size": 3164
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "5c41a7d418d36a0d22a2b7aca6d8cfd76ed1c6327ca9049c2d3f4da39b9dab7d",
+      "sha512": "c3d30916a747e52c334dc9f4f0498df001b52fa5f065e1d212904a03d1ff7a75bb35c7853052d37d51cb213ae86566bd1735310ffb81afdc53e9f5f314ec4797",
+      "size": 1372
+    },
+    {
+      "path": "EVIDENCIA.md",
+      "sha256": "b12926dcc068ff351d8700f61fbb465491a837aa456bad6860ee505d41b72497",
+      "sha512": "ed92ae39a643248f8ef0f9e12d46e92423a04c93200b9a9393cb247a47c3900e549549135c89848396a4eb9e76555cbdbe71dbaa2cb13c1d2b2278af30543b15",
+      "size": 5748
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "d424459726d73a19b2f82b3fa1848db4d96e208c72b200eb6f9fa1305242c030",
+      "sha512": "0137b6f9e9aff816f648ab403c37351c6e6919b7cda2390ed353cb4c6b851b05b82937a9e76a9ba80f19b03fae6621865f16b70e16dc399fed181363ee9ff79e",
+      "size": 1101
+    },
+    {
+      "path": "NOTICE.md",
+      "sha256": "68994573666198f38d2109daa6cfdace689157c42eb97d9a119c32df30ab920d",
+      "sha512": "40bb18c230f7fa8f9e90ed68ed203e593bc4eca500557c3dafa67a76b48915899c8d43d3b1b92724fc80f874c21d8dcf5c6f3ea6ac122de7b810da2b568709e1",
+      "size": 2912
+    },
+    {
+      "path": "PRIOR_ART.md",
+      "sha256": "b248e30dc23284c0e045f8d682272591558689372ac72429bef212672ce539be",
+      "sha512": "55fe9333710f1f28057f569bac6214eddb068d8002e3318339c68a700a8e2f95198d225d47b1e0dce0d146127e149147a245b77828a9e7ab4be7ae26058452f2",
+      "size": 5225
+    },
+    {
+      "path": "README.md",
+      "sha256": "d860210898ff51d7c810a953de67c48a48ce40768a4c63ed4071910b107985cb",
+      "sha512": "3131e96e5db58234cdf0d95707666aa9f0c2226aae133abb357fe1413a1d7175e0db64008b523175a2f5159d5cdcd4c9f980e5fa9c93e17567f7a410ae566188",
+      "size": 5496
+    },
+    {
+      "path": "TRADEMARK.md",
+      "sha256": "bc77e99e41c842fdf88b6c7efcc14e1a13cb7d87aeb9775f016c589936741e4c",
+      "sha512": "63b952a1988ac37d83438cfb30030ee8dc141316314111b57b2a5eeb57de6f4531b4853bff23e2687f104eee73118f6139204d4e73cf94ec3e0e7feba07937f0",
+      "size": 2137
+    },
+    {
+      "path": "mzspectral/__init__.py",
+      "sha256": "979921857b676d4e6939fc1fcf9dfde2e69a8ebb7d24b7207de18314b17f34dc",
+      "sha512": "7fcd77710f86081965f08f033694d4e5008aef5fbf4adc78449ab31b5e266be81e487529bdbdd9f0c65205285753ac31f0a3e76c51104b54c430996abfe8f5ed",
+      "size": 1376
+    },
+    {
+      "path": "mzspectral/layers.py",
+      "sha256": "1c026a873f560631589a4e9e799ea9378a1ad2a38b009d6d9aecc1e561480ce5",
+      "sha512": "be90767dba050288b0aa029dde8a18f4ba905109e4f2c600fc9a7406452a44ea3eca3a539f6add41a7efb0fd37304aba98e51db07a4bba3d71d6eb958d06f7ad",
+      "size": 2340
+    },
+    {
+      "path": "mzspectral/lecturas.py",
+      "sha256": "5890492cf4377a71fba014d3bef03ee989186c5c1cfa28b239faa2d056d5bae0",
+      "sha512": "c2c91ec48fcebc3ed90b65b0397f81ad48e390b054f0dcb61283e1d3e5536bd66ea0fe2c00c8c1a83c01e940dc6accdc9cc0728bb693dd92299f804974b788d1",
+      "size": 2220
+    },
+    {
+      "path": "mzspectral/optim.py",
+      "sha256": "5bfca74e60da0a55a5020e9d884934f4755a2c76262cabe9c3d1990e747d89cf",
+      "sha512": "ea7c2faf33485873a831bd35be34105a5b0d0ca71c8f02424c588809c29fd71943cada857034993f91290c4569f52b1c106968979706350b70b28c44bd247623",
+      "size": 12394
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "2d89887e0ee47b1d8560f66917de1b394c81326670da4e141f5790a4dbcfbae8",
+      "sha512": "5d528e8f19fa120daf9559fed785e5ea412a431a190992535db2927d0e902f209ba15f10be53f52174d02e97d0e8c4c3793ed689c3397e19ebda59eef15561db",
+      "size": 1500
+    },
+    {
+      "path": "scripts/equivalencia_t22.py",
+      "sha256": "eda3d91389aaab0a0b07fb6061eb907d6e85fbbe1fb951cb719d9254740898f7",
+      "sha512": "6d2ccd1f46eba961987ecf15c3dc010624ab50aa7f00ecf1f9d70b653bb98f01df196e58c0b18874553d5fa878b3dc3d8452343b3ec4c3ef8035e024e48716c3",
+      "size": 4222
+    },
+    {
+      "path": "scripts/sello.py",
+      "sha256": "dfa55014a28c658e5fc8b36ba80697ae70d29c07bd2c3a54b9e46752688f8000",
+      "sha512": "ebbdfbbe509275f5a2e5ffde045e9841647444d14cd0e22c9c08acc5027bb2b8019a6f906ebc6097f480128d4a65a8cb37e01d93e06133502c0da748702fdcf5",
+      "size": 7292
+    },
+    {
+      "path": "tests/test_optim.py",
+      "sha256": "bc5ba0ecc191bf8b1702ecf4474681e83315d76a0a056628f1908ce2f754853c",
+      "sha512": "aa01b603da1368e3e07873e05897ae52e6700601041b6cdc817b3848a8558d8c279956fcdfd5baaa3e86ee51390cb4c716fe49bbdc24a095bb1edd2d6a6ba9bb",
+      "size": 11155
+    }
+  ],
+  "signature_algorithm": null,
+  "signature_public_key": null,
+  "signature": null,
+  "signature_status": "pendiente: firma Ed25519 de los titulares (seal.py sign de MZTrain)"
+}
