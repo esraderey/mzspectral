@@ -18,6 +18,21 @@ if not all(os.path.isdir(p) for p in RUTAS):
     sys.exit(3)
 for p in RUTAS:
     sys.path.insert(0, p)
+import hashlib  # noqa: E402
+
+ESPECTRAL_T22 = "D:/mztrain-evidencia-T22/mztrain_t22/espectral.py"
+SHA_ESPERADO = "e2f01afaf44fd91727875d396aa4684d4b7dc3606f458319859e45f47b9075f2"
+
+
+def comprobar(cond, msg):
+    """Como assert, pero tambien con python -O: sale con codigo 1 si falla."""
+    if not cond:
+        print("FALLA:", msg)
+        sys.exit(1)
+
+
+with open(ESPECTRAL_T22, "rb") as f:
+    comprobar(hashlib.sha256(f.read()).hexdigest() == SHA_ESPERADO, "espectral.py de T22 no es el sellado (SHA-256 distinto)")
 import torch  # noqa: E402
 from torch import nn  # noqa: E402
 from mztrain.layers import ZFactorizedLinear  # noqa: E402
@@ -30,7 +45,7 @@ torch.manual_seed(7)
 lay_a = ZFactorizedLinear(40, 32, rank=8, bias=False, init_method="svd")
 torch.manual_seed(7)
 lay_b = ZFactorizedLinear(40, 32, rank=8, bias=False, init_method="svd")
-assert all(torch.equal(x, y) for x, y in zip(lay_a.parameters(), lay_b.parameters()))
+comprobar(all(torch.equal(x, y) for x, y in zip(lay_a.parameters(), lay_b.parameters())), "comprobacion")
 oa = T22.Spectron([lay_a], lr=4.8e-3, gen=torch.Generator().manual_seed(3017))
 ob = Z.ZSpectron3([lay_b], lr=4.8e-3, gen=torch.Generator().manual_seed(3017))
 for t in range(5):
@@ -39,8 +54,8 @@ for t in range(5):
     lay_b.U.grad, lay_b.V.grad = GU.clone(), GV.clone()
     oa.step()
     ob.step()
-    assert torch.equal(lay_a.U, lay_b.U) and torch.equal(lay_a.V, lay_b.V), f"Spectron difiere en el paso {t}"
-    assert torch.equal(oa.state[lay_a.U]["sigmas"], ob.state[lay_b.U]["sigmas"])
+    comprobar(torch.equal(lay_a.U, lay_b.U) and torch.equal(lay_a.V, lay_b.V), f"Spectron difiere en el paso {t}")
+    comprobar(torch.equal(oa.state[lay_a.U]["sigmas"], ob.state[lay_b.U]["sigmas"]), "comprobacion")
 # --- Muon sobre una matriz densa
 torch.manual_seed(8)
 wa = nn.Parameter(torch.randn(48, 36))
@@ -51,7 +66,7 @@ for t in range(5):
     wa.grad, wb.grad = G.clone(), G.clone()
     ma.step()
     mb.step()
-    assert torch.equal(wa, wb), f"Muon difiere en el paso {t}"
+    comprobar(torch.equal(wa, wb), f"Muon difiere en el paso {t}")
 # --- Doble completo sobre el GPT de mztrain (misma particion que T22: build de t22 frente a construir)
 import t22  # noqa: E402  (parchea t20.build; no corre nada)
 import t20  # noqa: E402
@@ -66,10 +81,10 @@ for arm, lr, lr_adam in (("Fspec", 4.8e-3, 3e-4), ("Dsmuon", 1.2e-3, 6e-4)):
     torch.manual_seed(17)
     m_b = type(m_a)(50, 16, t20.ARMS[arm]["d"], 2, 4, t20._lin(t20.ARMS[arm]))
     sano.init_sano(m_b, 17)
-    assert all(torch.equal(x, y) for x, y in zip(m_a.parameters(), m_b.parameters()))
+    comprobar(all(torch.equal(x, y) for x, y in zip(m_a.parameters(), m_b.parameters())), "comprobacion")
     o_b = Z.construir(m_b, lr=lr, lr_adam=lr_adam, seed=17)
     o_b.fijar_lr(cal.lr(0))        # mismo LR de arranque que el calendario de T20 (rampa 0.1*pico): mult*base
-    assert [h["lr"] for h in o_a.param_groups] == [h["lr"] for h in o_b.param_groups], arm
+    comprobar([h["lr"] for h in o_a.param_groups] == [h["lr"] for h in o_b.param_groups], arm)
     gen = torch.Generator().manual_seed(1017)
     for t in range(8):
         x = torch.randint(50, (4, 16), generator=gen)
@@ -78,6 +93,6 @@ for arm, lr, lr_adam in (("Fspec", 4.8e-3, 3e-4), ("Dsmuon", 1.2e-3, 6e-4)):
             _, loss = m(x, x)
             loss.backward()
             o.step()
-        assert all(torch.equal(p, q) for p, q in zip(m_a.parameters(), m_b.parameters())), f"{arm}: difiere en el paso {t}"
+        comprobar(all(torch.equal(p, q) for p, q in zip(m_a.parameters(), m_b.parameters())), f"{arm}: difiere en el paso {t}")
     print(arm, "identico en 8 pasos del GPT de mztrain")
 print("EQUIVALENCIA BIT A BIT: OK (Spectron 5 pasos, Muon 5 pasos, Fspec y Dsmuon 8 pasos)")

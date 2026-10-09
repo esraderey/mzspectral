@@ -1,9 +1,9 @@
 {
-  "seal_version": "1.0",
+  "seal_version": "1.1",
   "work": {
     "name": "mzspectral",
     "long_name": "Optimizadores espectrales para matrices densas y factorizadas U·diag(S)·V",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "package": "mzspectral"
   },
   "owner": {
@@ -29,7 +29,7 @@
     "sello_t22": "# v1 2026-10-07T17:45:30-0600",
     "espectral_py_sha256": "e2f01afaf44fd91727875d396aa4684d4b7dc3606f458319859e45f47b9075f2"
   },
-  "generated_at_utc": "2026-10-08T07:31:06Z",
+  "generated_at_utc": "2026-10-09T04:09:39Z",
   "tool": {
     "name": "scripts/sello.py",
     "python": "3.13.2",
@@ -38,31 +38,44 @@
   "algorithms": [
     "SHA-256",
     "SHA-512",
-    "Merkle (SHA-256)"
+    "Merkle (SHA-256, hoja = ruta+hash)",
+    "texto con finales de linea LF"
   ],
-  "file_count": 16,
-  "total_bytes": 69654,
-  "merkle_root_sha256": "5c23f4c1e5aaef6cc7bc794b2b029b9c8d15475a220572622775d7a1b5ae9998",
-  "files_canonical_sha256": "109b8f50d4f521feb5424cd1042c7d7f2635ae8072f42169ac9edd0f0f9fa29e",
-  "files_canonical_sha512": "be939f4f2a1acf207fbd77684d757db2905c1d03215a0d48f845aab2b9dc901bdc26a04f548cf79431df1a843f4d5ec8120abd6e077211c3c6b71d0853d5029b",
+  "file_count": 19,
+  "total_bytes": 100783,
+  "merkle_root_sha256": "15492bf0beabfbc861a90ad4d87582ff1a3e25023080754c9139343f524251ca",
+  "files_canonical_sha256": "50dca575302c0537837bad59c4189ac9cb019f2e90d9155b3cbb6135a4e53bf5",
+  "files_canonical_sha512": "c79b1c20c7d6d47629d6105d03661247baf355ee64dca37056c96a045e74fee7114f652ee6ec2c8343eb4a65ead6e2dcb7a03fa02510dfbda7679c4b9fecf089",
   "files": [
     {
+      "path": ".gitattributes",
+      "sha256": "88255b36af6fab707afbd171a74406304222080d35ae6857bbff71d78e2ea5a0",
+      "sha512": "c214263d71c297aea6273d38094c2f353c2dd431bfa82c06b3d065c8f8d1d87f1ee6cf0de324122d62387bd8ce524de9a8bd6f11562012bfe4ed13f8a6cc7957",
+      "size": 132
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "9794843f27627d116d4fdb1b3451fde8e7a716811755aa07e3b7d713de2fdffa",
+      "sha512": "d07fe8a5238ed80f2e6fb5846a4d8d6b26bf4deeb75f846f6a03cb1a92c66e5d3e1dd5d53e98112d4ceeddc3eeb8d1b07e0c04924ae9cd5d83aa17681902a85b",
+      "size": 128
+    },
+    {
       "path": "AUTHORSHIP.md",
-      "sha256": "32ef58ef3a44389697b185148609f2ef7861d375ecfad6fdd67b9ce6409a8818",
-      "sha512": "64583f1be789f5c8264ac15ddc9398fa57c152afc4d2116c36f3843dfcf17198d271745e8835678a3d6f240f2fc23df65c8563309a9f359df1e3a6151191a654",
-      "size": 3164
+      "sha256": "d15ba426406d22b7db93a04bb66574269efe373ac4c7664a11f7cf5707e6132d",
+      "sha512": "38b96e182a702d20969d7fb8f3e3ec3c334e19d81728ce96a109528508018cfad0acdc8fe5ace91dc473770a8b4608853a67746b192b8acef53e4e721985a69f",
+      "size": 3235
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "5c41a7d418d36a0d22a2b7aca6d8cfd76ed1c6327ca9049c2d3f4da39b9dab7d",
-      "sha512": "c3d30916a747e52c334dc9f4f0498df001b52fa5f065e1d212904a03d1ff7a75bb35c7853052d37d51cb213ae86566bd1735310ffb81afdc53e9f5f314ec4797",
-      "size": 1372
+      "sha256": "03742bf861fda1a2116bb97214008068b2670b1299c5789ba58cfb8ffcfef2a8",
+      "sha512": "7d205a83e06018c3ef266aed9c739dfa897de3586be79fa36493822acecb7260ffe1bd759790eee2ece971bdb463db6a0dd4ecb1b2a966398cd938ae30a4a73e",
+      "size": 3658
     },
     {
       "path": "EVIDENCIA.md",
-      "sha256": "b12926dcc068ff351d8700f61fbb465491a837aa456bad6860ee505d41b72497",
-      "sha512": "ed92ae39a643248f8ef0f9e12d46e92423a04c93200b9a9393cb247a47c3900e549549135c89848396a4eb9e76555cbdbe71dbaa2cb13c1d2b2278af30543b15",
-      "size": 5748
+      "sha256": "c605ffd140f243541234d7501c95cece6581c06bb49a3334dc6373d475deeaf5",
+      "sha512": "201662e4f493ccaec9a0bcebd24852547ba07551cd2289d224697ecba36ede60541f89e19221c7c52397de595547b9a87ab679fb152c418822675049a1832cc1",
+      "size": 7671
     },
     {
       "path": "LICENSE",
@@ -78,15 +91,15 @@
     },
     {
       "path": "PRIOR_ART.md",
-      "sha256": "b248e30dc23284c0e045f8d682272591558689372ac72429bef212672ce539be",
-      "sha512": "55fe9333710f1f28057f569bac6214eddb068d8002e3318339c68a700a8e2f95198d225d47b1e0dce0d146127e149147a245b77828a9e7ab4be7ae26058452f2",
-      "size": 5225
+      "sha256": "725204dd31733d0ebaa6f273fc43a2bb328ed4246791dce95cf29ea9e781ae11",
+      "sha512": "c7d75ea849cde521e41c87a3f5eafb04f716afde4a488312e6d3f3da19257977bcb0f8f5d5a22047f0d102769765306a8bba61877bf7bdfcf3acd3ce550b4c1d",
+      "size": 5743
     },
     {
       "path": "README.md",
-      "sha256": "d860210898ff51d7c810a953de67c48a48ce40768a4c63ed4071910b107985cb",
-      "sha512": "3131e96e5db58234cdf0d95707666aa9f0c2226aae133abb357fe1413a1d7175e0db64008b523175a2f5159d5cdcd4c9f980e5fa9c93e17567f7a410ae566188",
-      "size": 5496
+      "sha256": "deba819111810947278c74b78881606080d5492185a80bdc768654eb23f2ff5c",
+      "sha512": "9790dad307a9f54aa571f6c37765d363ecde2f9b861e237ffc65f9b29841e410b1f4ea2f3910732843aef56763d4ece2f62d02d12553e14b854019bc7271dd41",
+      "size": 6254
     },
     {
       "path": "TRADEMARK.md",
@@ -96,55 +109,61 @@
     },
     {
       "path": "mzspectral/__init__.py",
-      "sha256": "979921857b676d4e6939fc1fcf9dfde2e69a8ebb7d24b7207de18314b17f34dc",
-      "sha512": "7fcd77710f86081965f08f033694d4e5008aef5fbf4adc78449ab31b5e266be81e487529bdbdd9f0c65205285753ac31f0a3e76c51104b54c430996abfe8f5ed",
+      "sha256": "041874d4f44a0fe0891dc513f785ee25da1272e8f1d0318ec0c9e8a80b796792",
+      "sha512": "e3e4fe35f159a39f7251c2460c93da51c7ab2b38c4639b36a698a620d5ec113f5e8d86367cdbcb29577ba2ff2648175ded27edcb96dd8ed503b442974f93e998",
       "size": 1376
     },
     {
       "path": "mzspectral/layers.py",
-      "sha256": "1c026a873f560631589a4e9e799ea9378a1ad2a38b009d6d9aecc1e561480ce5",
-      "sha512": "be90767dba050288b0aa029dde8a18f4ba905109e4f2c600fc9a7406452a44ea3eca3a539f6add41a7efb0fd37304aba98e51db07a4bba3d71d6eb958d06f7ad",
-      "size": 2340
+      "sha256": "96e6ef4353b8796fe4bf36ee65aab860552e8e97044006696a70b40f343473e0",
+      "sha512": "3841171a058605c2423cf469fa4b2c199fe60c3bd3bb79864516c0c2c15a0b11dfc851ec43529fded188ee566dc34a843e01ee0435563c9a1d08bb5753800ab8",
+      "size": 2526
     },
     {
       "path": "mzspectral/lecturas.py",
-      "sha256": "5890492cf4377a71fba014d3bef03ee989186c5c1cfa28b239faa2d056d5bae0",
-      "sha512": "c2c91ec48fcebc3ed90b65b0397f81ad48e390b054f0dcb61283e1d3e5536bd66ea0fe2c00c8c1a83c01e940dc6accdc9cc0728bb693dd92299f804974b788d1",
-      "size": 2220
+      "sha256": "154ac3a0cc0e47e43c3345a109a6882b297aa514527063eb7e368bda26919582",
+      "sha512": "9e2747c1185ad0c0fe70685e60f64fb620c3be22d7b84684a6694d1baf1b4bac5b7a8a8a0c07691ef0733d328a27b5f779d2f6bc15dd0d9dc050a56607add8e2",
+      "size": 2309
     },
     {
       "path": "mzspectral/optim.py",
-      "sha256": "5bfca74e60da0a55a5020e9d884934f4755a2c76262cabe9c3d1990e747d89cf",
-      "sha512": "ea7c2faf33485873a831bd35be34105a5b0d0ca71c8f02424c588809c29fd71943cada857034993f91290c4569f52b1c106968979706350b70b28c44bd247623",
-      "size": 12394
+      "sha256": "b19c2fe70adcf724acbaa260bc7e210d7807088670574bf5e7e0dd6d5659efda",
+      "sha512": "8e9e11700cae7af808f7c9ff60c858ba8ff5557a6f7b00dc3f1c4a6770c9af60906ab62a63e24bf7474567da9afed6248fc336adb14299b82a249e67b86876dd",
+      "size": 19112
     },
     {
       "path": "pyproject.toml",
-      "sha256": "2d89887e0ee47b1d8560f66917de1b394c81326670da4e141f5790a4dbcfbae8",
-      "sha512": "5d528e8f19fa120daf9559fed785e5ea412a431a190992535db2927d0e902f209ba15f10be53f52174d02e97d0e8c4c3793ed689c3397e19ebda59eef15561db",
+      "sha256": "1ac216cba543e536f73730ed1da61744097c2b6b0267453ba1ee5b9e16d58b2d",
+      "sha512": "34996c78aeac07b9d24ff62475d1ed56e5059be5cea7b4e33304dbc10b5c584d267d857e1093cd87e91639eb734fc15e7f1c0298a2cd90cad1d225efe2ddc5ec",
       "size": 1500
     },
     {
       "path": "scripts/equivalencia_t22.py",
-      "sha256": "eda3d91389aaab0a0b07fb6061eb907d6e85fbbe1fb951cb719d9254740898f7",
-      "sha512": "6d2ccd1f46eba961987ecf15c3dc010624ab50aa7f00ecf1f9d70b653bb98f01df196e58c0b18874553d5fa878b3dc3d8452343b3ec4c3ef8035e024e48716c3",
-      "size": 4222
+      "sha256": "4eaef27af04e46fd0b32e6ccb3efe066d06fc3643b4577d16719f6eb93d75987",
+      "sha512": "3c137d9634cd1eea0659bfc7cef1aad3819a8ca1b6f9135db74904d6fafd989532acf3300bfecfbf54a2d80af01b9899be6d0a78477def4c475b979476b1b759",
+      "size": 4817
     },
     {
       "path": "scripts/sello.py",
-      "sha256": "dfa55014a28c658e5fc8b36ba80697ae70d29c07bd2c3a54b9e46752688f8000",
-      "sha512": "ebbdfbbe509275f5a2e5ffde045e9841647444d14cd0e22c9c08acc5027bb2b8019a6f906ebc6097f480128d4a65a8cb37e01d93e06133502c0da748702fdcf5",
-      "size": 7292
+      "sha256": "a87f6a8d47dd5b50213f6713070bff779d6a34b33e1c4b5e31ace951d1770e7e",
+      "sha512": "3d172aa7212bdfa27df84b82ea1412739d08cd001e3db3a7f8da89de4139165e83bdfa2b95a96dcdb51e01594b6bb45a4e5775e3746f3259c49f73d740d538da",
+      "size": 13450
+    },
+    {
+      "path": "tests/test_auditoria.py",
+      "sha256": "04cefe9bd8acbd7ac3a500e3908795cb83a3450ba9252165e401134b9d89791b",
+      "sha512": "0424e2d09e32235ab58aae4772e454d8f9849674cdcea1df644a9513860a4478538255865cc2223611cbfa20582e77d80357008e808ca328b847d397a4f71efc",
+      "size": 11567
     },
     {
       "path": "tests/test_optim.py",
-      "sha256": "bc5ba0ecc191bf8b1702ecf4474681e83315d76a0a056628f1908ce2f754853c",
-      "sha512": "aa01b603da1368e3e07873e05897ae52e6700601041b6cdc817b3848a8558d8c279956fcdfd5baaa3e86ee51390cb4c716fe49bbdc24a095bb1edd2d6a6ba9bb",
+      "sha256": "2b29d9bb64ae1417df1c2f6bc2d3ef7ee52c96eaa73462a8b14c900fe514c840",
+      "sha512": "86c3d128aedff19e3633e861b92474a1612a42605733c7117311fbe3552ef9e01eacd2b4a2db260bc71f4009e94324f7a8ccb974b12c8529b3ff3ecb686a7911",
       "size": 11155
     }
   ],
   "signature_algorithm": null,
   "signature_public_key": null,
   "signature": null,
-  "signature_status": "pendiente: firma Ed25519 de los titulares (seal.py sign de MZTrain)"
+  "signature_status": "ausente: pendiente de la firma Ed25519 de los titulares (sello.py firmar --key)"
 }

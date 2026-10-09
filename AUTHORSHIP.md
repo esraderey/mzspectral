@@ -1,7 +1,7 @@
 # DECLARACIÓN DE AUTORÍA Y TITULARIDAD
 
 **Obra:** mzspectral — Optimizadores espectrales para matrices densas y factorizadas U·diag(S)·V
-**Versión declarada:** 0.1.0
+**Versión declarada:** 0.1.1 (0.1.0 sellada el 2026-10-08; 0.1.1 tras la auditoría del mismo día)
 **Fecha de primera fijación:** 2026-10-07 (código de `mztrain_t22/espectral.py`, sellado en el
 preregistro de T22 el 2026-10-07 a las 17:45, antes de cualquier corrida) y 2026-10-08 (extracción
 como paquete standalone)

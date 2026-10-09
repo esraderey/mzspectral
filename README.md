@@ -3,7 +3,7 @@
   Distribuido bajo licencia MIT (ver LICENSE).
 -->
 
-# mzspectral — optimizadores espectrales para matrices densas y factorizadas v0.1.0
+# mzspectral — optimizadores espectrales para matrices densas y factorizadas v0.1.1
 
 > **ZMuon** (Muon con la escala RMS de Moonshot) para matrices densas y **ZSpectron3** (Spectron
 > adaptado a la forma de tres factores U·diag(S)·V de MZTrain) para matrices factorizadas, en un
@@ -24,7 +24,10 @@
 1. **Mejora a los dos tipos de modelo por igual.** Sobre la línea base sana de MZTrain (AdamW
    calibrado, recorte, rampa + coseno), a 18 000 pasos y tres semillas, ZMuon baja el BPC del
    denso 0,066 y ZSpectron3 el del factorizado 0,063, con **la mitad de estado de optimizador** y
-   **cero inestabilidades** en 13 corridas hasta LR 9,6e-3 ([EVIDENCIA.md](EVIDENCIA.md)).
+   **cero inestabilidades** en 13 corridas hasta LR 9,6e-3 ([EVIDENCIA.md](EVIDENCIA.md)). Matiz
+   honesto: en el factorizado el weight decay efectivo sobre W es 8–11 veces el de los otros
+   brazos (decae cada factor); qué parte de los 0,063 es del optimizador y qué parte del
+   decaimiento lo separa una ablación pendiente.
 2. **No cierra el hueco a iso-parámetro.** El factorizado con ZSpectron3 queda por debajo del
    denso entrenado con AdamW (3/3 semillas), pero el denso con ZMuon vuelve a ganar por el mismo
    margen de antes (+0,054 frente a +0,051). Si tu modelo cabe denso, entrena denso con ZMuon.
@@ -37,7 +40,7 @@
 pip install -e D:\mzspectral
 ```
 
-Requiere Python ≥ 3.9 y PyTorch ≥ 2.0. Tests: `python -m pytest tests` (CPU, unos segundos).
+Requiere Python ≥ 3.9 y PyTorch ≥ 2.0. Tests: `python -m pytest tests` (CPU, unos segundos; 24 tests).
 
 ## Uso
 
@@ -69,6 +72,9 @@ torch.save({"modelo": modelo.state_dict(), "opt": opt.state_dict()}, "ckpt.pt") 
 - `Doble` no hereda de `torch.optim.Optimizer`: con un calendario propio usa `fijar_lr`; para
   otros, escribe `g["lr"]` en `opt.param_groups` (el primero es el de AdamW y lleva `mult`).
 - `Z.ZMuon(params, lr)` y `Z.ZSpectron3(capas, lr)` se pueden usar sueltos.
+- Reparto: los `nn.Linear` van a ZMuon salvo los parametrizados (`weight_norm`) y los atados a
+  un `nn.Embedding` (cabeza atada), que van a AdamW; un parámetro compartido entra una sola vez;
+  `excluir=[módulo]` manda a AdamW todo lo que cuelga de ese módulo.
 - `Z.normas(modelo)` da σ_A, σ_B, ‖U‖₂, ‖V‖₂, rango estable y ortogonalidad por capa.
 
 ## Qué hace exactamente
@@ -93,7 +99,8 @@ y el preregistro de T22.
 | [`PRIOR_ART.md`](PRIOR_ART.md) | Qué no se reivindica y qué sí: la adaptación a tres factores, el compuesto de dos relojes y la evidencia. |
 | [`TRADEMARK.md`](TRADEMARK.md) | Marcas de los titulares y uso nominativo de «Muon» y «Spectron». |
 | [`EVIDENCIA.md`](EVIDENCIA.md) | El experimento T22 de MZTrain: números, protocolo, hashes y equivalencia bit a bit con el código sellado. |
-| [`SEAL.json`](SEAL.json) + [`MANIFEST.sha256`](MANIFEST.sha256) | Sello de integridad (SHA-256 + SHA-512 + Merkle); firma Ed25519 pendiente de los titulares. |
+| [`SEAL.json`](SEAL.json) + [`MANIFEST.sha256`](MANIFEST.sha256) | Sello de integridad (SHA-256 + SHA-512 + Merkle, todo el árbol, finales de línea normalizados); firma Ed25519 pendiente de los titulares (`scripts/sello.py firmar --key`). |
+| [`CHANGELOG.md`](CHANGELOG.md) | 0.1.1: correcciones de la auditoría del 2026-10-08 (`.forja/auditoria-2026-10-08/INFORME.md` e `INFORME-MATEMATICAS.md`). |
 
 ```bash
 python scripts/sello.py verificar

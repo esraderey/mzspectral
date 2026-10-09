@@ -73,6 +73,33 @@ y V algo menos que con AdamW.
 
 ## Coste y límites
 
+- **Decaimiento efectivo no igualado (revisión matemática del 2026-10-08).** El weight decay
+  desacoplado actúa sobre cada factor: en Fspec decaen U y V con lr = 4,8e-3 y S con lr_adam =
+  3e-4, así que W decae por (1 − lr·wd)²(1 − lr_adam·wd) ≈ 9,9e-5 por paso al pico, frente a
+  1,2e-5 en Dsmuon (8,2×) y 9e-6 en F★ (11×). Acumulado con la rampa y el coseno de 18 000 pasos
+  (calculado con el calendario real):
+
+  | Brazo | Exponente acumulado | Factor de encogimiento de W |
+  |---|---|---|
+  | Ds★ (AdamW 6e-4) | 0,054 | 0,95 |
+  | Dsmuon (ZMuon 1,2e-3) | 0,108 | 0,90 |
+  | F★ (AdamW 3e-4 en U, S, V) | 0,081 | 0,92 |
+  | Fspec (ZSpectron3 4,8e-3 + S a 3e-4) | 0,892 | 0,41 |
+
+  Consecuencia: de F★ a Fspec cambian a la vez el optimizador y el decaimiento efectivo, y el
+  hueco Fspec − Dsmuon (+0,054) compara dos brazos con 8× de diferencia en regularización. Los
+  números publicados son los de la receta tal como se corrió; **qué parte de los 0,063 es de cada
+  pieza, y en qué dirección empuja el decaimiento, solo lo dice una ablación** (Fspec a 6000 pasos
+  con el weight decay de U y V dividido por 8, o a 0): pendiente, fuera de T22.
+- **El término de S.** ΔW = ΔU·diag(S)·V + U·diag(S)·ΔV + U·diag(ΔS)·V; el tercero lo mueve AdamW
+  sin el factor 1/(σ_A + σ_B + 1) y escala con ‖U‖₂‖V‖₂ (en T22, 2,7–6,9 al final según la capa,
+  menor que con AdamW: 3,4–11). Con lr_adam 16 veces menor que lr pesa ≈ 5 % de la cota de U y V;
+  crece si lr_adam se acerca a lr.
+- **Newton-Schulz y escala RMS.** NS5 deja los valores singulares en [0,68, 1,13] solo para
+  σᵢ/‖G‖_F ≳ 2e-3 (las direcciones más pequeñas quedan pequeñas, como en el Muon de referencia); el
+  RMS por entrada de la actualización escalada es 0,17–0,20·lr según la forma de la matriz, no
+  0,2 exacto. Ninguna de las dos cosas cambia el código ni los números.
+
 - Tiempo por paso (con freno térmico, no comparable entre brazos): Fspec ≈ 2× F★ y Dsmuon ≈ 1,6×
   Ds★, por los lanzamientos de núcleos pequeños de Newton-Schulz y de la iteración de potencia,
   no por FLOPs. ZSpectron3 no sincroniza GPU→CPU (σ como tensor 0-d).

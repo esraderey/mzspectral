@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mzspectral"
-version = "0.1.0"
+version = "0.1.1"
 description = "Optimizadores espectrales (Muon y Spectron adaptado a tres factores U·diag(S)·V) para matrices densas y factorizadas, con evidencia preregistrada (MZTrain T22)"
 readme = "README.md"
 license = {text = "MIT"}

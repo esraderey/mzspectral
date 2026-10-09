@@ -226,4 +226,4 @@ def test_layers_y_lecturas():
     n = Z.normas(Modelito())
     assert n["fact"]["tipo"] == "factorizada" and n["fact"]["ortog_U"] < 1e-4 and 1 <= n["fact"]["rango_estable_W"] <= 6
     assert n["densa"]["tipo"] == "densa" and 1 < n["densa"]["rango_estable_W"] <= 24 and "salida" in n and "tok" not in n
-    assert Z.__version__ == "0.1.0" and Z.Muon is Z.ZMuon and Z.Spectron3 is Z.ZSpectron3
+    assert Z.__version__ == "0.1.1" and Z.Muon is Z.ZMuon and Z.Spectron3 is Z.ZSpectron3

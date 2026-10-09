@@ -20,6 +20,8 @@ class FactorizedLinear(nn.Module):
     def __init__(self, in_features: int, out_features: int, rank: int, bias: bool = False, epsi: bool = True):
         super().__init__()
         self.in_features, self.out_features = in_features, out_features
+        if not isinstance(rank, int) or rank < 1 or in_features < 1 or out_features < 1:
+            raise ValueError(f"rank, in_features y out_features deben ser >= 1 (rank={rank!r})")
         self.rank = min(rank, in_features, out_features)
         self.U = nn.Parameter(torch.empty(out_features, self.rank))
         self.S = nn.Parameter(torch.empty(self.rank))

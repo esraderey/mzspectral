@@ -15,7 +15,7 @@ from .optim import (BETAS, EPS, MOMENTO, NESTEROV, RMS, WD, Doble, ZMuon, ZSpect
 from .layers import FactorizedLinear
 from .lecturas import normas, rango_estable
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __all__ = ["ZMuon", "ZSpectron3", "Doble", "construir", "particion", "es_factorizada", "newton_schulz5", "potencia",
            "FactorizedLinear", "normas", "rango_estable", "MOMENTO", "NESTEROV", "RMS", "WD", "BETAS", "EPS", "__version__"]
 Muon = ZMuon

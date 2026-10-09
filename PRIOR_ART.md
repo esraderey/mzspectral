@@ -39,8 +39,10 @@ reproducir cada técnica desde el código fuente (`mzspectral/optim.py`).
 Spectron está escrito para dos factores A·B. En la forma U·diag(S)·V (S entrenable) no existe
 un par (A, B) con W = A·B que conserve a S como parámetro. La adaptación de los titulares:
 
-1. A primer orden ΔW = ΔU·diag(S)·V + U·diag(S)·ΔV; las normas que acotan la actualización del
-   producto son ‖diag(S)·V‖₂ para el paso de U y ‖U·diag(S)‖₂ para el de V. Se definen
+1. A primer orden ΔW = ΔU·diag(S)·V + U·diag(S)·ΔV + U·diag(ΔS)·V; las normas que acotan los dos
+   primeros términos son ‖diag(S)·V‖₂ para el paso de U y ‖U·diag(S)‖₂ para el de V (el tercero
+   lo mueve AdamW sobre S sin el factor espectral y escala con ‖U‖₂‖V‖₂; pequeño mientras
+   lr_adam ≪ lr). Se definen
    **σ_A := ‖U·diag(S)‖₂ y σ_B := ‖diag(S)·V‖₂** (no ‖U‖₂ y ‖V‖₂, que ignorarían la escala que
    lleva S), estimadas por iteración de potencia con arranque caliente, **leídas antes del paso
    y con la S de antes del paso**, y U y V reciben su momento ortogonalizado dividido por
@@ -49,9 +51,13 @@ un par (A, B) con W = A·B que conserve a S como parámetro. La adaptación de l
    entrena con AdamW en un reloj separado (su propio LR, el calibrado para AdamW), junto con el
    embedding, las normalizaciones y los sesgos. El espectral da su paso antes que AdamW en la
    misma iteración.
-3. La cota publicada ‖ΔW‖₂ ≤ η pasa, con la escala RMS, a η·0,2·√max(m, n) a primer orden, y el
-   weight decay se deja sin el factor 1/(σ_A + σ_B + 1) (forma publicada), lo que se declara
-   como elección con su consecuencia (mayor razón decaimiento/paso en U y V).
+3. La cota publicada ‖ΔW‖₂ ≤ η pasa, con la escala RMS, a η·0,2·√max(m, n) a primer orden (salvo
+   el sobreimpulso de Newton-Schulz y el término de S), y el weight decay se deja sin el factor
+   1/(σ_A + σ_B + 1) (forma publicada). Como decae cada factor, el producto decae por
+   (1 − η·wd)²(1 − η_adam·wd): con los LR de T22, 8,2 veces lo que decae el denso con ZMuon por
+   paso y un encogimiento acumulado de W de 0,41 frente a 0,90–0,95 en los otros brazos. Es una
+   elección declarada; qué parte de la mejora medida es del optimizador y qué parte del
+   decaimiento lo separa una ablación pendiente (EVIDENCIA.md).
 
 ## Aportación 2 — Optimizador compuesto de dos relojes con reparto automático
 

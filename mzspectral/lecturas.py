@@ -29,10 +29,10 @@ def normas(m: nn.Module) -> Dict[str, dict]:
     for nombre, mod in m.named_modules():
         if es_factorizada(mod):
             U, S, V = mod.U.detach().double(), mod.S.detach().double(), mod.V.detach().double()
-            Un, Vn = U / U.norm(dim=0), V / V.norm(dim=1)[:, None]
+            Un, Vn = U / U.norm(dim=0).clamp_min(1e-300), V / V.norm(dim=1).clamp_min(1e-300)[:, None]   # una columna nula no da NaN
             gU, gV = Un.T @ Un, Vn @ Vn.T
             r = gU.shape[0]
-            off = lambda g: float((g - torch.eye(r, dtype=g.dtype)).pow(2).sum().div(max(1, r * (r - 1))).sqrt())
+            off = lambda g, r=r: float((g - torch.eye(r, dtype=g.dtype, device=g.device)).pow(2).sum().div(max(1, r * (r - 1))).sqrt())
             out[nombre] = {"tipo": "factorizada", "sigma_A": float(torch.linalg.matrix_norm(U * S, ord=2)),
                            "sigma_B": float(torch.linalg.matrix_norm(S[:, None] * V, ord=2)),
                            "norma2_U": float(torch.linalg.matrix_norm(U, ord=2)), "norma2_V": float(torch.linalg.matrix_norm(V, ord=2)),
